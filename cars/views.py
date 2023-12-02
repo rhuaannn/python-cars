@@ -23,7 +23,7 @@ def new_car_view(request):
     
     if request.method == 'POST':
         new_car_form = CarModelForm(request.POST, request.FILES)
-        print(new_car_form.data)
+       
         if new_car_form.is_valid():
             new_car_form.save()
             return redirect('cars_list')
