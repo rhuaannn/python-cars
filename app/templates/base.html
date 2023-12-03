@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}OLX-BS{% endblock %}</title>
   <style>
     body {
         font-family: 'Open Sans', sans-serif;
@@ -51,6 +51,8 @@
         margin: 0;
         padding: 0;
         display: flex;
+        justify-content: center;
+        width:100%;
     }
 
     nav ul li {
@@ -83,8 +85,17 @@
   <header>
     <nav>
       <ul>
-        <li><a href="{% url 'cars_list' %}">Carros</a></li>
-        <li><a href="{% url 'new_car' %}">Cadastrar carro</a></li>
+        {% if user.is_authenticated %}
+          <li>Olá, {{ user.username }}</li>
+          <li><a href="{% url 'new_car' %}">Cadastrar carro</a></li>
+          <li><a href="{% url 'logout' %}">Sair do sistema</a></li>
+       {% endif %}
+
+      {% if not user.is_authenticated %}
+          <!-- Usuário não está logado, exiba os links de login ou registro -->
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Criar uma conta</a></li>
+     {% endif %}
       </ul>
     </nav>
   </header>
@@ -95,7 +106,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2023 PycodeBR Multimarcas</p>
+    <p>&copy; 2023 OLX Multimarcas</p>
   </footer>
 </body>
 </html>
