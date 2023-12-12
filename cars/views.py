@@ -1,36 +1,24 @@
 from django.shortcuts import redirect, render
 from cars.models import Car
 from cars.forms import CarModelForm
-
-def cars_view(request):
- #usamos o __ para percorrer uma tabela para outra.
- #usando o contains do django, funcao pronta, vai trazer o elemento digitado
- #   cars = Car.objects.filter(brand__name = 'Fiat')
-    cars = Car.objects.all()
-    search = request.GET.get('search')
-   
-    if search:
-         cars = Car.objects.filter(model__icontains=search)
-         
-    return render(
-        request, 
-        'cars.html',
-        {'cars': cars}      
-    )
-     
+from django.views import View
+ 
+class CarsViews(View):
+    def get(self, request):
+        cars = Car.objects.all().order_by('model')
+        search = request.GET.get('search')
         
-def new_car_view(request):
-    
-    if request.method == 'POST':
-        new_car_form = CarModelForm(request.POST, request.FILES)
-       
-        if new_car_form.is_valid():
-            new_car_form.save()
-            return redirect('cars_list')
-    else:
+        if search:
+            cars = cars.filter(model__icontains=search)
+        
+        return render(
+            request,
+            'cars.html',
+            {'cars': cars}
+        )
+ 
+class NewCarView(View):
+    def get(self, request):
         new_car_form = CarModelForm()
-    return render(
-        request,
-        'new_car.html',
-        {'new_car_form': new_car_form}
-    )
+    
+        return render(request, 'new_car.html',{'new_car_form': new_car_form})
