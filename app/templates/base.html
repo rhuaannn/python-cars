@@ -86,7 +86,7 @@
     <nav>
       <ul>
         {% if user.is_authenticated %}
-          <li>Olá, {{ user.username }}</li>
+          <li><a href="{% url 'cars_list' %}">Olá, {{user.username}}</a></li>
           <li><a href="{% url 'new_car' %}">Cadastrar carro</a></li>
           <li><a href="{% url 'logout' %}">Sair do sistema</a></li>
        {% endif %}
