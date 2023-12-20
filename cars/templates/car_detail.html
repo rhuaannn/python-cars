@@ -9,9 +9,9 @@
   <!-- Link para folhas de estilo CSS ou outras dependências -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>{% extends "base.html" %}
+<body>
 
-    {% block content %}
+   
       <style>
         .car-card {
           background-color: #e3e1e1;
@@ -54,17 +54,19 @@
           margin-bottom: 20px;
         }
     
-        .btn {
-          display: inline-block;
+        .btn-voltar-detail {
           background-color: #0096c7;
           color: #fff;
+          margin-left:645px;
+      
           border: none;
           padding: 10px 20px;
           font-size: 16px;
           border-radius: 4px;
+          
           cursor: pointer;
           transition: background-color 0.3s ease-in-out;
-          margin: 0 10px;
+         
         }
     
         .btn:hover {
@@ -88,7 +90,9 @@
     
         a {
           text-decoration: none !important;
+ 
         }
+   
       </style>
       <div class="car-card">
           <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
@@ -98,6 +102,9 @@
           <p><strong>Placa:</strong> {{ object.plate }}</p>
           <p><strong>Preço:</strong> R$ {{ object.value }}</p>
       </div>
+      <a  class="btn-voltar-detail" href="{% url 'cars_list' %}">Voltar</a> 
+   
     {% endblock %}
+
     </body>
 </html>
