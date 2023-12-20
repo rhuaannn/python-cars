@@ -50,20 +50,19 @@
         .buttons-container {
           display: flex;
           justify-content: center;
-          margin-top: 20px;
+          align-items:center;
+          margin-top: 30px;
           margin-bottom: 20px;
+          gap:25px;
         }
     
-        .btn-voltar-detail {
+        .btn {
           background-color: #0096c7;
           color: #fff;
-          margin-left:645px;
-      
           border: none;
           padding: 10px 20px;
           font-size: 16px;
           border-radius: 4px;
-          
           cursor: pointer;
           transition: background-color 0.3s ease-in-out;
          
@@ -75,6 +74,10 @@
     
         .btn-danger {
           background-color: #d9534f;
+          text-decoration: none !important;
+        }
+        .btn-voltar {
+          background-color: green;
           text-decoration: none !important;
         }
     
@@ -102,7 +105,12 @@
           <p><strong>Placa:</strong> {{ object.plate }}</p>
           <p><strong>Preço:</strong> R$ {{ object.value }}</p>
       </div>
-      <a  class="btn-voltar-detail" href="{% url 'cars_list' %}">Voltar</a> 
+    <div class='buttons-container'>
+      <a href="{% url 'car_update' pk=object.pk %}" class='btn btn-primary'>Editar</a>
+      <a href="{% url 'car_delete' pk=object.pk %}" class='btn btn-danger'>Deletar</a>
+      <a href="{% url 'cars_list' %}" class='btn btn-voltar'>Voltar</a>
+      
+    </div>
    
     {% endblock %}
 
