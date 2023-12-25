@@ -10,7 +10,7 @@ def car_post_save(sender, instance, **kwargs):
     cars_count = Car.objects.all().count()
     cars_value = Car.objects.aggregate(
         total_value = Sum('value')
-    )
+    )['total_value']
     
  
 
