@@ -27,4 +27,5 @@ class CarInventory(models.Model):
     cars_value = models.FloatField()
     created_at = models.DateTimeField(auto_now_add = True)
     
-    
+    class Meta:
+        ordering = ['-created_at']
