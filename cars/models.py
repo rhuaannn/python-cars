@@ -1,5 +1,5 @@
 from django.db import models
-import uuid
+
 
 class Brand(models.Model):
     id = models.AutoField(primary_key=True)
@@ -22,4 +22,9 @@ class Car(models.Model):
         return self.model
 
 
+class CarInventory(models.Model):
+    cars_count = models.IntegerField()
+    cars_value = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add = True)
+    
     
