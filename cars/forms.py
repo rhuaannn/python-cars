@@ -19,3 +19,10 @@ class CarModelForm(forms.ModelForm):
               self.add_error('factory_year', "Ano não permitido!")
 
         return factory_year
+
+    def clean_photo(self):
+        photo = self.cleaned_data.get('photo')
+        
+        if not photo:
+            self.add_error('photo', 'É necessário adicionar uma foto!')
+        return photo
