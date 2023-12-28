@@ -6,5 +6,4 @@ class CarsConfig(AppConfig):
     name = 'cars'
 
     def ready(self):
-        import cars.sginals
-
+        import cars.signals
