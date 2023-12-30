@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Brand(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
@@ -33,4 +32,7 @@ class CarInventory(models.Model):
         ordering = ['-created_at']
     
     def __str__(self):
+        # Ao exibir a representação textual, verifique se cars_value é nulo
+        if self.cars_value is None:
+            self.cars_value = 0
         return f'{self.cars_count} - {self.cars_value}'
