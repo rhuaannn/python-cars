@@ -32,7 +32,6 @@ class CarInventory(models.Model):
         ordering = ['-created_at']
     
     def __str__(self):
-        # Ao exibir a representação textual, verifique se cars_value é nulo
-        if self.cars_value is None:
-            self.cars_value = 0
+       
+
         return f'{self.cars_count} - {self.cars_value}'
