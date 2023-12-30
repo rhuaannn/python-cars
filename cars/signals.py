@@ -10,7 +10,7 @@ from django.db.models.functions import Coalesce
 def car_inventory_update():
     cars_count = Car.objects.all().count()
     cars_value = Car.objects.aggregate(
-        total_value=Coalesce(Sum('value', output_field=FloatField()), Value(0))
+        total_value=Coalesce(Sum('value', output_field=FloatField()), Value(0.0))
     )['total_value']
     CarInventory.objects.create(
         cars_count=cars_count,
